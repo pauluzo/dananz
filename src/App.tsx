@@ -66,7 +66,7 @@ function App() {
                       }}
                       open={open}
                       onClose={() => setAnchor(null)}
-                      transitionDuration={600}
+                      transitionDuration={500}
                     >
                       <MenuItem
                         onClick={() => setAnchor(null)}

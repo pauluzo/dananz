@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, StyledEngineProvider, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, IconButton, Link, Menu, MenuItem, StyledEngineProvider, TextField, Typography, useMediaQuery } from '@mui/material';
 import {useStyles} from './Styles';
 import {ReactComponent as Logo} from "./assets/logo.svg";
 import {ReactComponent as IntroImage} from "./assets/intro_image.svg";
@@ -11,9 +11,20 @@ import {ReactComponent as FBIcon} from "./assets/facebook.svg";
 import {ReactComponent as IGIcon} from "./assets/instagram.svg";
 import {ReactComponent as TTIcon} from "./assets/tiktok.svg";
 import {ReactComponent as YTIcon} from "./assets/youtube.svg";
+import {ReactComponent as MenuIcon} from "./assets/menu-bar-icon.svg";
+import { useState } from 'react';
 
 function App() {
-  const classes = useStyles()
+  const classes = useStyles();
+  const [anchor, setAnchor] = useState(null);
+  const open = Boolean(anchor);
+  const handleMenu = (event : any) => {
+    setAnchor(event.currentTarget);
+  };
+  const isMobile = useMediaQuery((theme) => {
+    const newTheme = theme as any;
+    return newTheme.breakpoints.down("sm")
+  });
 
   return (
     <StyledEngineProvider injectFirst>
@@ -21,13 +32,77 @@ function App() {
           <Container className={classes.Container}>
             <Box className={classes.Header}>
               <Logo />
-              <Box>
-                <Button className={classes.Button}>Home</Button>
-                <Button className={classes.Button}>About Us</Button>
-                <Button className={classes.Button}>Services</Button>
-                <Button className={`${classes.Button} ${classes.TeamsBtn}`}>Our Teams</Button>
-                <Button className={`${classes.Button} ${classes.ContactBtn}`}>Contact Us</Button>
-              </Box>
+              {
+                !isMobile ?
+                <Box>
+                  <Button className={classes.Button}>Home</Button>
+                  <Button className={classes.Button}>About Us</Button>
+                  <Button className={classes.Button}>Services</Button>
+                  <Button className={`${classes.Button} ${classes.TeamsBtn}`}>Our Teams</Button>
+                  <Button className={`${classes.Button} ${classes.ContactBtn}`}>Contact Us</Button>
+                </Box> : 
+                (
+                  <>
+                    <IconButton
+                      color="primary"
+                      className={classes.MenuButton}
+                      edge="start"
+                      aria-label="menu"
+                      onClick={handleMenu}
+                    >
+                     <MenuIcon width="40px" height="auto"/> 
+                    </IconButton>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchor}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                      }}
+                      open={open}
+                      onClose={() => setAnchor(null)}
+                      transitionDuration={1000}
+                    >
+                      <MenuItem
+                        onClick={() => setAnchor(null)}
+                        component={Link}
+                      >
+                        Home
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => setAnchor(null)}
+                        component={Link}
+                      >
+                        About Us
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => setAnchor(null)}
+                        component={Link}
+                      >
+                        Services
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => setAnchor(null)}
+                        component={Link}
+                      >
+                        Our Teams
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => setAnchor(null)}
+                        component={Link}
+                        style={{backgroundColor : "#2C3878", color : "white"}}
+                      >
+                        Contact Us
+                      </MenuItem>
+                    </Menu>
+                  </>
+                )
+              }
             </Box>
             <Box className={classes.Intro}>
               <Typography className={classes.IntroTitle} variant='h2'>

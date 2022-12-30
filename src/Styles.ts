@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     fontSize : "17px",
     padding : "10px 25px"
   },
+  MenuButton: {
+    marginRight: theme.spacing(2)
+  },
   TeamsBtn : {
     fontWeight : "600"
   },

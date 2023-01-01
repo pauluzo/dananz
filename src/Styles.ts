@@ -102,6 +102,14 @@ const useStyles = makeStyles(theme => ({
       marginLeft : "0px",
     }
   },
+  ProjectBox : {
+    height : "100%"
+  },
+  ProjectOverview : {
+    display : "flex",
+    flexDirection : "column",
+    justifyContent : "space-between"
+  },
   Banner : {
     minHeight : "200px",
     backgroundColor : "#2C3878",

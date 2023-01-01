@@ -132,6 +132,14 @@ function App() {
                       Online learning with us does not interfere with your daily life. 
                       because learning can be done anytime and anywhere. 
                     </Typography>
+                    <Box marginTop="70px" display="flex">
+                      <Typography className={classes.GridBodyText}>
+                        July 22 - 2022
+                      </Typography>
+                      <Typography marginLeft="60px" className={classes.GridBodyText}>
+                        Interior Design - Furniture
+                      </Typography>
+                    </Box>
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={6}>
